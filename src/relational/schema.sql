@@ -92,7 +92,7 @@ ALTER SEQUENCE public.cluster_id_seq OWNED BY public.cluster.id;
 CREATE TABLE public.measurement (
     id integer NOT NULL,
     sensor integer,
-    "time" time with time zone,
+    "time" timestamp without time zone,
     value bytea
 );
 
