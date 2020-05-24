@@ -1,0 +1,26 @@
+version: '3'
+services:
+    cassandra1:
+        build:
+            context: .
+            dockerfile: cass1.Dockerfile
+        networks:
+            - cas-net
+        tty: true
+        stdin_open: true
+
+    cassandra2:
+        build:
+            context: .
+            dockerfile: cass2.Dockerfile
+        depends_on:
+            - cassandra1
+        networks:
+            - cas-net    
+        environment:
+            CASSANDRA_SEEDS: cassandra1
+        tty: true
+        stdin_open: true
+
+networks:
+    cas-net:
